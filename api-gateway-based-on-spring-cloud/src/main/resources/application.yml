@@ -1,0 +1,20 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: API_GATEWAY
+
+  cloud:
+    gateway:
+      routes:
+      - id: MOVIE-INFO-SERVICE
+        uri:
+          lb://MOVIE-INFO-SERVICE
+        predicates:
+        - Path=/movies/**
+      - id: RATINGS-DATA-SERVICE
+        uri:
+          lb://RATINGS-DATA-SERVICE
+        predicates:
+        - Path=/ratingsdata/**
